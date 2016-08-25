@@ -1,7 +1,5 @@
-#source("C:/Users/MIGUEL ANGEL CORDERO/Dropbox/EM/Manuales/R/Paquetes.R")
 rm(list=ls()) #para borrar las variables declaradas anteriormente
 cat("\014")#Para borrar la consola
-setwd(getwd())
 
 semilla <- function(valor){
   set.seed(valor)
