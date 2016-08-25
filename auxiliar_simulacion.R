@@ -1,4 +1,4 @@
-source("C:/Users/MIGUEL ANGEL CORDERO/Dropbox/EM/Manuales/R/Paquetes.R")
+#source("C:/Users/MIGUEL ANGEL CORDERO/Dropbox/EM/Manuales/R/Paquetes.R")
 rm(list=ls()) #para borrar las variables declaradas anteriormente
 cat("\014")#Para borrar la consola
 setwd(getwd())
@@ -14,7 +14,7 @@ genera.base<-function(datos,estrato,tamanio,tdominio,dominio){
   names(datos)[names(datos)==tamanio]<-"ln"
   names(datos)[names(datos)==tdominio]<-"dominio"
   
-  #Selecciono unicamente al municipio de interés si es necesario, si no, se omite (o se comenta)
+  #Selecciono unicamente al municipio de interÃ©s si es necesario, si no, se omite (o se comenta)
   if(dominio!="0 Completo"){
     datos <- datos[datos$dominio==dominio,]
   }
@@ -33,12 +33,12 @@ muestras <- function(Base,tamanios,variables,int_ratio,nsim,partidos,esquema,dom
   int_ratio<-tolower(int_ratio)
   partidos<-tolower(partidos)
   
-  #Aquí seleccionamos de la base variables, qué columna contiene los parámetros de interés
+  #AquÃ­ seleccionamos de la base variables, quÃ© columna contiene los parÃ¡metros de interÃ©s
   var_muestreo <- c("seccion","tiposeccion","cve_entidad","mun","nom_mun",
                     "dominio","estrato","ln")
   
-  #Obtenemos el tamaño poblacional
-  N <- length(Base$seccion) #tamaño de la población
+  #Obtenemos el tamaÃ±o poblacional
+  N <- length(Base$seccion) #tamaÃ±o de la poblaciÃ³n
   
   #Generamos Nh  y nh####
   Nh <- as.data.frame(table(Base$estrato))
@@ -73,7 +73,7 @@ muestras <- function(Base,tamanios,variables,int_ratio,nsim,partidos,esquema,dom
   }  
   names(val_pob)<-variables  
   
-  ####Simulación de muestras para obtener DEFF, IC de var#####
+  ####SimulaciÃ³n de muestras para obtener DEFF, IC de var#####
   sim_results <- list()
   i=1
   for(aux in variables){
@@ -101,7 +101,7 @@ muestras <- function(Base,tamanios,variables,int_ratio,nsim,partidos,esquema,dom
     }
   }
   
-  #Intervalos de confianza para estimadores de razon de interés#
+  #Intervalos de confianza para estimadores de razon de interÃ©s#
   x<-0
   y<-0
   ii<-1
@@ -123,9 +123,9 @@ muestras <- function(Base,tamanios,variables,int_ratio,nsim,partidos,esquema,dom
     yticks_val <- seq(cota.min,cota.max,(cota.max-cota.min)/10)
     if(ii==1){
       plot(x,y,yaxt="n",col="white",xlim=c(0,nsim),ylim = c(cota.min,cota.max),
-           #main=paste("Simulación de Intervalos de Confianza al 95% para Presidente Municipal"),
+           #main=paste("SimulaciÃ³n de Intervalos de Confianza al 95% para Presidente Municipal"),
            main=paste("Intervalo de Confianza al 95% para ",partidos," Dominio: ",dominio,sep=""),
-           xlab="Número de muestra",ylab="Porcentaje",add=TRUE)
+           xlab="NÃºmero de muestra",ylab="Porcentaje",add=TRUE)
       axis(2, at=yticks_val, lab=percent(yticks_val))
       ii<-ii+1
     }
@@ -138,7 +138,7 @@ muestras <- function(Base,tamanios,variables,int_ratio,nsim,partidos,esquema,dom
   }
   grafico<-recordPlot()
   
-  #Generamos el archivo con los resultados de la simulación####
+  #Generamos el archivo con los resultados de la simulaciÃ³n####
   
   resultados<-data.frame(variable=NA,rat_1=NA,LI=NA,LS=NA,se=NA,deff=NA,varpob=NA)
   i=1
@@ -161,18 +161,18 @@ muestras <- function(Base,tamanios,variables,int_ratio,nsim,partidos,esquema,dom
   
 }
 
-# #Ingresar el esquema de muestreo: 1 ppt sistemático 2: swor systemathic
+# #Ingresar el esquema de muestreo: 1 ppt sistemÃ¡tico 2: swor systemathic
 # esquema <- "PPT Sistematico"
-# #print("Ingrese el dominio según la base de datos: 1, 2, 3 para algún distrito federal , 0 Estatal")
+# #print("Ingrese el dominio segÃºn la base de datos: 1, 2, 3 para algÃºn distrito federal , 0 Estatal")
 # tdominio <- "dominio"
-# #print("Ingrese el dominio según la base de datos: 1, 2, 3 para algún distrito federal , 0 Estatal")
+# #print("Ingrese el dominio segÃºn la base de datos: 1, 2, 3 para algÃºn distrito federal , 0 Estatal")
 # dominio <- "0 Completo"
 # # dominio <- 1
-# #Aquí ponemos el nombre del estrato de interés (debe estar declarado en el marco muestral)
+# #AquÃ­ ponemos el nombre del estrato de interÃ©s (debe estar declarado en el marco muestral)
 # estrato <- "estrato"
-# #Aquí ponemos el nombre del estrato de interés (debe estar declarado en el marco muestral)
+# #AquÃ­ ponemos el nombre del estrato de interÃ©s (debe estar declarado en el marco muestral)
 # partidos <- "GOB11"
-# #Aquí ponemos el nombre del estrato de interés (debe estar declarado en el marco muestral)
+# #AquÃ­ ponemos el nombre del estrato de interÃ©s (debe estar declarado en el marco muestral)
 # tamanio <- "ln"
 # #generamos la base con los tamanios de muestra para cada estrato####
 # tamanios <- read.csv("Ejemplo/tamanios_estratos.csv")[order(read.csv("Ejemplo/tamanios_estratos.csv")$estrato),]
