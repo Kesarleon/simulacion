@@ -1,11 +1,7 @@
-#ruta<-"C:/Users/MIGUEL ANGEL CORDERO/Dropbox/EM/"
-#source(paste(ruta,"Manuales/R/Paquetes.R",sep=""))
-# source(paste(ruta,"Manuales/Indicadores_calidad/Shiny_app/auxiliar_indicadores.R",sep=""))
-#source(paste(ruta,"Manuales/Esquema de muestreo/Instrucciones para Simulacion de Muestras/auxiliar_simulacion.R",sep=""))
+source("Paquetes.R")
 source("auxiliar_simulacion.R")
 library(shiny)
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
   datos <-reactive({
